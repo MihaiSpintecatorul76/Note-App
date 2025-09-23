@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/register.css" />
-    <title>Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
-          rel="stylesheet">
+    <title>Register</title>
 </head>
 <body>
-<div>abc</div>
+<h2>Register</h2>
+<form th:action="@{/register}" th:object="${user}" method="post">
+    <input type="text" th:field="*{username}" placeholder="Username" /><br/>
+    <input type="email" th:field="*{email}" placeholder="Email" /><br/>
+    <input type="password" th:field="*{password}" placeholder="Password" /><br/>
+    <button type="submit">Register</button>
+</form>
 
-<script src="/js/register.js"></script>
-
+<div th:if="${regErrorBackend}">
+    <p th:text="${regErrorBackend}" style="color:red"></p>
+</div>
 </body>
 </html>

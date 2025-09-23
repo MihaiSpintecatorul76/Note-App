@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/home.css" />
-    <title>Home</title>
+    <link rel="stylesheet" href="/css/notes.css" />
+    <title>Notes</title>
     <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
           rel="stylesheet">
 </head>
-<body>
-<div>abc</div>
 
-<script src="/js/home.js"></script>
+<body>
+
+<div>
+
+    <ul>
+        <li th:each="note : ${notes}">
+            <strong th:text="${note.title}">Titlu Notiță</strong> -
+            <span th:text="${note.content}">Conținut Notiță</span>
+
+        </li>
+    </ul>
+
+</div>
 
 </body>
 </html>

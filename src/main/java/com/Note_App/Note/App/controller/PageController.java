@@ -8,20 +8,14 @@ import java.io.IOException;
 @Controller
 public class PageController {
 
-    @GetMapping(path="/home")
-    public String home() throws IOException {
-        return "home";
-    }
-
-    @GetMapping(path="/login")
-    public String login() throws IOException {
+    @GetMapping("/login")
+    public String showLoginPage() {
         return "login";
     }
 
-    @GetMapping(path="/register")
-    public String register() throws IOException {
-        return "register";
-    }
+
+
+
 
 
 
