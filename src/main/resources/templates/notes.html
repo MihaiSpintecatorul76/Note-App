@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/notes.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/css/notes.css"/>
     <title>Notes</title>
     <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
           rel="stylesheet">
@@ -11,17 +11,48 @@
 
 <body>
 
-<div>
+<img class="backgroundImg" src="/assets/backgroundMain.png" alt="background">
 
-    <ul>
-        <li th:each="note : ${notes}">
-            <strong th:text="${note.title}">Titlu Notiță</strong> -
-            <span th:text="${note.content}">Conținut Notiță</span>
+<div th:if="${!hasNotes}" id="container">
 
-        </li>
-    </ul>
+    <div id="header-container">
+        <p id="header" th:text="'Hello, ' + ${username}+'!'"></p>
+        <p id="message">Let's create your first note</p>
+    </div>
+
+    <form action="/notes/create"  id="btnContainer">
+        <button class="addBtn" type="submit" ><img class="icon" src="/assets/add.png"></button>
+    </form>
+
+
 
 </div>
+
+<div th:if="${hasNotes}" id="notesContainer">
+
+    <h2 id="notesHeader">Your Notes</h2>
+
+    <div id="notesList">
+        <div class="noteCard" th:each="note : ${notes}">
+            <h3 class="noteTitle" th:text="${note.title}">Note Title</h3>
+            <p class="noteContent" th:text="${note.content}">Note content...</p>
+        </div>
+    </div>
+
+</div>
+<div id="lowerContainer">
+<form id="logoutContainer" action="/logout" >
+    <button id="btnLogout" type="submit">Logout</button>
+</form>
+    <form id="createContainer" action="/notes/create" th:if="${hasNotes}">
+        <button class="addBtn" type="submit" ><img class="icon" src="/assets/add.png"></button>
+    </form>
+</div>
+
+
+
+
+<script src="/js/notes.js"></script>
 
 </body>
 </html>

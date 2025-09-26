@@ -16,7 +16,8 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@Setter @Getter
+@Setter
+@Getter
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -27,41 +28,49 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public UserModel register(UserModelDto userModelDto) {
-        if (userRepository.findByEmail(userModelDto.getEmail()).isPresent()) {
-            throw new RuntimeException("Email already exists!");
-        }
-        if (userRepository.findByUsername(userModelDto.getUsername()).isPresent()) {
-            throw new RuntimeException("Username already exists!");
-        }
-
-        if(!userModelDto.getPassword().equals(userModelDto.getRepeatedPassword())) {
-            throw new RuntimeException("Passwords do not match!");
-        }
-
-        UserModel userModel = new UserModel();
-        userModel.setUsername(userModelDto.getUsername());
-        userModel.setEmail(userModelDto.getEmail());
-        userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
-
-        return userRepository.save(userModel);
-    }
-
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<UserModel> user = userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<UserModel> user = userRepository.findByUsername(username);
         if (user.isPresent()) {
             var userObj = user.get();
             return User.builder()
                     .username(userObj.getUsername())
                     .password(userObj.getPassword())
+
                     .build();
-        }
-        else {
-            throw new UsernameNotFoundException(email);
+        } else {
+            throw new UsernameNotFoundException(username);
         }
 
 
     }
+
+    public UserModel register(UserModelDto userModelDto) {
+        if (userRepository.findByUsername(userModelDto.getUsername()).isPresent() && userRepository.findByEmail(userModelDto.getEmail()).isPresent()) {
+            throw new RuntimeException("Email and username already exist!");
+        }
+        else if (userRepository.findByEmail(userModelDto.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already exists!");
+        }
+
+        else if (userRepository.findByUsername(userModelDto.getUsername()).isPresent()) {
+            throw new RuntimeException("Username already exists!");
+        }
+
+        if (userModelDto.getPassword() == null || userModelDto.getRepeatedPassword() == null
+                || !userModelDto.getPassword().equals(userModelDto.getRepeatedPassword())) {
+            throw new IllegalArgumentException("Passwords do not match!");
+        }
+
+
+        UserModel userModel = new UserModel();
+        userModel.setUsername(userModelDto.getUsername());
+        userModel.setEmail(userModelDto.getEmail());
+        userModel.setPassword(passwordEncoder.encode(userModelDto.getPassword()));
+
+        return userRepository.save(userModel);
+    }
+
+
 
 }

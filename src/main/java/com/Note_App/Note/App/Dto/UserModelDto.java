@@ -1,9 +1,8 @@
 package com.Note_App.Note.App.Dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import lombok.Data;
+
+import jakarta.validation.constraints.*;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,11 +15,12 @@ import lombok.Setter;
 public class UserModelDto {
     private Long id;
     @NotBlank(message = "Please enter a username")
-    @Size(min = 4, max = 25)
     private String username;
+    @NotBlank(message = "Please enter a password")
     private String password;
+
     private String repeatedPassword;
-    @NotBlank(message = "Please enter a valid email")
+    @NotBlank(message = "Please enter an email")
     @Email(message = "Please enter a valid email")
     private String email;
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Create Note</title>
+    <link rel="stylesheet" href="/css/create.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<img class="backgroundImg" src="/assets/backgroundMain.png" alt="background">
+
+<div id="noteFormContainer">
+    <form action="/notes/create/add" method="post" >
+        <h2>Create a new note</h2>
+
+        <div id="userContainer">
+            <input class="casete" type="text" name="title" placeholder="Title" required>
+            <textarea class="casete" name="content" placeholder="Write your note..." required></textarea>
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Save Note</button>
+            <a href="/notes" class="cancelBtn">Cancel</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

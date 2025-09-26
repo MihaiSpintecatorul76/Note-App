@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
-<h2>Login</h2>
-<form th:action="@{/login}" method="post">
-    <label>Username:</label>
-    <input type="text" name="username" /><br/>
-    <label>Password:</label>
-    <input type="password" name="password" /><br/>
-    <button type="submit">Login</button>
+
+<img class="backgroundImg" src="/assets/backgroundMain.png" alt="background">
+
+<form class="login_form" action="/login"  method="post">
+    <h2>Welcome to Note-IT App</h2>
+    <h1>Please enter your details</h1>
+
+    <input class="casete" type="text" name="username" id="username" placeholder="Username" >
+    <input class="casete" type="password" name="password" id="password" placeholder="Password" >
+    <button class="casete" id="submitBtn" type="submit">Login</button>
+    <p  id="submitTxt">Don't have an account? Register&nbsp;<a href="/register">here</a></p>
+    <p th:if="${param.error}" style="color: crimson; text-align: center; margin-top: 0;">
+        Invalid username or password
+    </p>
+
 </form>
 
-<div th:if="${param.error}">
-    <p style="color:red">Invalid username or password</p>
-</div>
+
+
+
+<script src="/js/login.js"></script>
+
 </body>
 </html>
-
-
-
-
-
-
-
