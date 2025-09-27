@@ -27,7 +27,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 700px;
+    width: 50%;
+    min-width: 50%;
     flex-direction: column;
     padding: 50px;
     background-color: rgba(77, 65, 46, 0.85);
@@ -135,8 +136,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
-    max-width: 900px;
+    width: 50%;
+   min-width: 50%;
    padding-right: 0;
     padding-bottom: 30px;
     padding-top: 30px;
