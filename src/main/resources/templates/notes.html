@@ -32,11 +32,11 @@
 
     <h2 id="notesHeader">Your Notes</h2>
 
-    <div id="notesList">
-        <div class="noteCard" th:each="note : ${notes}">
+    <div  id="notesList">
+        <a th:href="@{/notes/{id}(id=${note.id})}" class="noteCard" th:each="note : ${notes}">
             <h3 class="noteTitle" th:text="${note.title}">Note Title</h3>
             <p class="noteContent" th:text="${note.content}">Note content...</p>
-        </div>
+        </a>
     </div>
 
 </div>

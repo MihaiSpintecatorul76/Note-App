@@ -19,7 +19,15 @@ public class NoteService {
         return noteRepository.findAllByUser(user);
     }
 
+    public NoteModel getNoteById(long id) {
+        return noteRepository.findById(id).orElseThrow();
+    }
+
     public void addNote(NoteModel noteModel) {
         noteRepository.save(noteModel);
+    }
+
+    public void deleteNote(long id) {
+        noteRepository.deleteById(id);
     }
 }

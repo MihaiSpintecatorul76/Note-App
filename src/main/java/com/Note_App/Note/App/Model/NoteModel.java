@@ -13,6 +13,7 @@ public class NoteModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
+    @Column(length = 1000)
     private String content;
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)

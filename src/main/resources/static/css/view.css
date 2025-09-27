@@ -118,7 +118,7 @@ textarea::placeholder
     text-decoration: none;
 }
 
-/* Save button */
+
 .buttons button {
     background-color: white;
     color: #827265;
@@ -141,5 +141,28 @@ textarea::placeholder
 
 .buttons .cancelBtn:hover {
     box-shadow: 0 0 9px 3px white;
+    outline: none;
+}
+
+.buttons .deleteBtn {
+    flex: 1;
+    min-width: 50px;
+    padding:0;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons .deleteBtn:hover {
+    box-shadow: 0 0 9px 3px red;
     outline: none;
 }

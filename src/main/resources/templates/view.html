@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Create Note</title>
-    <link rel="stylesheet" href="/css/create.css"/>
+    <link rel="stylesheet" href="/css/view.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Arimo&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -12,17 +12,22 @@
 <img class="backgroundImg" src="/assets/backgroundMain.png" alt="background">
 
 <div id="noteFormContainer">
-    <form action="/notes/create/add" method="post" >
-        <h2>Create a new note</h2>
+    <form th:action="@{/notes/{id}/edit(id=${note.id})}" method="post" >
+        <h2 id="header" th:text="'Edit ' + ${note.title}+'!'"></h2>
 
         <div id="userContainer">
-            <input class="casete" type="text" name="title" placeholder="Title" required>
-            <textarea class="casete" name="content" placeholder="Write your note..." spellcheck="false" required></textarea>
+            <input class="casete" type="text" name="title" placeholder="Title" th:value="${note.title}" required>
+            <textarea class="casete" name="content" placeholder="Write your note..."  th:text="${note.content}" spellcheck="false" required></textarea>
         </div>
 
         <div class="buttons">
             <button type="submit">Save Note</button>
+<!--           // <form th:action="@{/notes/{id}/edit(id=${note.id})}" method="post" >-->
+
+            <a th:href="@{/notes/{id}/delete(id=${note.id})}" class="deleteBtn">Delete</a>
+<!--            </form>-->
             <a href="/notes" class="cancelBtn">Cancel</a>
+
         </div>
     </form>
 </div>

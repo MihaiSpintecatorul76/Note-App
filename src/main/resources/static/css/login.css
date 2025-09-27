@@ -30,7 +30,7 @@ body {
     background-color: rgba(77, 65, 46, 0.8);
     border-radius: 6px;
     flex-direction: column;
-
+    transition: box-shadow 0.3s ease;
 }
 
 .login_form h2 {
@@ -46,6 +46,12 @@ body {
     color: white;
     font-size: 20px;
 
+}
+
+.login_form:hover
+{
+    box-shadow: 0 0 9px 5px white;
+    outline: white;
 }
 
 .casete {

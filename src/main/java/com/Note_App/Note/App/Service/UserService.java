@@ -6,6 +6,8 @@ import com.Note_App.Note.App.repository.UserRepository;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +28,14 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
+
+    public UserModel getUser()
+    {
+        Authentication  authentication= SecurityContextHolder.getContext().getAuthentication();
+        return  userRepository.findByUsername(authentication.getName()).orElseThrow();
+    }
+
+
 
 
     @Override
